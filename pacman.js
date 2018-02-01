@@ -1,76 +1,4 @@
-<html>
-	<head>
-		<title>Pacman</title>
-		<style type="text/css">
-			* {
-				margin: 0;
-				padding: 0;
-			}
-			.row {
-				line-height: 0;
-			}
-			.wall {
-				background-color: rgb(11, 11, 71);
-				height: 28px;
-				width: 28px;
-				display: inline-block;
-                border: 1px solid rgb(3, 3, 173);
-			}
-			.blank {
-				background-color: rgb(7, 29, 126);
-				height: 30px;
-				width: 30px;
-				display: inline-block;
-			}
-			.coin {
-				background-color: rgb(7, 29, 126);
-				background-image: url('dot.gif');
-				height: 30px;
-				width: 30px;
-				display: inline-block;
-				background-size: contain;
-                background-size: 60%;
-                background-repeat: no-repeat;
-                background-position: center;
-                
-			}
-			#pacman {
-                margin: 5px;
-				background-color: rgb(7, 29, 126);
-				background-image: url('pacman.gif');
-				height: 20px;
-				width: 20px;
-				display: inline-block;
-				background-size: contain;
-				position: absolute;
-				left: 0px;
-				top: 0px;
-			}
-			#ghost1, #ghost2, #ghost3, #ghost4 {
-				background-color: rgb(7, 29, 126);
-				background-image: url('');
-				height: 30px;
-				width: 30px;
-				display: inline-block;
-				background-size: contain;
-				position: absolute;
-                left: 0px;
-				top: 0px;
-			}
-		</style>
-	</head>
-	<body>
-        <div id = 'world'></div>
-        <div id = 'pacman'></div>
-        <div id = 'ghost1'></div>
-        <div id = 'ghost2'></div>
-        <div id = 'ghost3'></div>
-        <div id = 'ghost4'></div>
-	</body>
-	
-	<script type = "text/javascript">
-
-		var world = [
+	var world = [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0],
         [0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0],
@@ -160,60 +88,36 @@
                 ySteps--;
             }
         }
-        // function validMove(){
-        //    if ((topValue >= ySteps*30 && topValue <= (ySteps+1)*30)  && (leftValue >= xSteps*30 && leftValue <= (xSteps+1)*30)){
-        //        leftValue = xSteps*30;
-        //        topValue = ySteps*30;
-        //         if (!isWall()){
-        //                 return true;
-        //         }
-        //         else{
-        //             return false;
-        //         }
-        //     }
-        // }
         function isWall(key){
-                if ((key == 37 && world[topValue/30][leftValue/30-1] != 0) ||
-                    (key == 39 && world[topValue/30][leftValue/30+1] != 0) ||
-                    (key == 40 && world[topValue/30+1][leftValue/30] != 0) ||
-                    (key == 38 && world[topValue/30-1][leftValue/30] != 0)){
-                        return false;
-                
-            }
-            else{
-                return true
-            } 
+                if ((key == 37 && leftValue % 30 == 0 && world[Math.floor(topValue/30)][leftValue/30-1] == 0) ||
+                    (key == 39 && leftValue % 30 == 0 && world[Math.floor(topValue/30)][leftValue/30+1] == 0) ||
+                    (key == 40 && topValue % 30 == 0 && world[topValue/30+1][Math.floor(leftValue/30)] == 0) ||
+                    (key == 38 && topValue % 30 == 0 && world[topValue/30-1][Math.floor(leftValue/30)] == 0)){
+                        return true;
+                    
+        }
+            return false
         }
         function move(){
             document.getElementById('pacman').style.left = leftValue+"px";
             document.getElementById('pacman').style.top = topValue+"px";
         }
         function eat(){
-            if(topValue % 30 === 0 && leftValue % 30 === 0){
+            if(topValue % 30 == 0 && leftValue % 30 == 0){
                 if(world[topValue/30][leftValue/30] == 1){     	
                     world[topValue/30][leftValue/30] = 2;
                 }
         	}
         }
         document.onkeydown = function(e){
-            if (!isWall(e.keyCode)){
+            if (!isWall(e.keyCode) && topValue % 30 ==0 && leftValue % 30 == 0){
                 direction = e.keyCode;
-                positionPacman();
-            stepsCount();
-            console.log(ySteps, xSteps)
-            console.log(topValue, leftValue);
-            move();
             }
             else if ((direction == 37 && e.keyCode == 39) ||
                 (direction == 39 && e.keyCode == 37) ||
                 (direction == 40 && e.keyCode == 38) ||
                 (direction == 38 && e.keyCode == 40)){
                 direction = e.keyCode;
-                positionPacman();
-            //stepsCount();
-            //console.log(xSteps, ySteps);
-            //console.log(topValue, leftValue);
-            move();
             }
         }
         
@@ -222,7 +126,7 @@
             for (var i = 1; i < 5; i++){
                 document.getElementById('ghost'+i).style.left = x+"px";
                 document.getElementById('ghost'+i).style.top = y+"px";
-                document.getElementById('ghost'+i).style.backgroundImage = "url('ghost"+i+".gif')";
+                document.getElementById('ghost'+i).style.backgroundImage = "url('img/ghost"+i+".gif')";
             }
         }
         function moveGhosts(){
@@ -231,8 +135,6 @@
                 document.getElementById('ghost'+i).style.top = y+"px";
             }
         }
-        drawWorld();
-        move();
         function gameLoop(){
             drawWorld();
             move();
@@ -240,12 +142,11 @@
             setTimeout(gameLoop, 100);
         }
         function pacmanLoop(){
+            drawWorld();
             positionPacman();
-            //stepsCount();
-            console.log(xSteps, ySteps)
-            move();
             eat();
-            setTimeout(pacmanLoop, 100);
+            move();
+            setTimeout(pacmanLoop, 80);
         }
         //gameLoop();
         pacmanLoop();
@@ -270,5 +171,3 @@
 		 			ninjaAlive = false
 		 		}
 		} */
-	</script>
-</html>
