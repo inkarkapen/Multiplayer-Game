@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<title>Pacman</title>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'game_app/styles.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>		
+		<script type="text/javascript" src="{% static 'game_app/pacman.js' %}"></script>
+	</head>
+	<body>
+		<div id = 'world'></div>
+		<div id = 'pacman'></div>
+		<div id = 'ghost1'></div>
+		<div id = 'ghost2'></div>
+		<div id = 'ghost3'></div>
+		<div id = 'ghost4'></div>
+		<a id = "logout" href = "/game/logout">Log Out</a>
+	</body>
+</html>

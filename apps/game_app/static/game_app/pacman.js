@@ -49,8 +49,9 @@
 					output += "<div class = '" + worldDict[world[row][wall]] +"'></div>"
 				}
 				output += "</div>"
-			}
-			document.getElementById('world').innerHTML = output;
+            }
+            $('#world').html(output)
+			//document.getElementById('world').innerHTML = output;
 		}
         
         var leftValue = 30, topValue = 30, direction = 0; xSteps = 1; ySteps = 1;
@@ -99,8 +100,10 @@
             return false
         }
         function move(){
-            document.getElementById('pacman').style.left = leftValue+"px";
-            document.getElementById('pacman').style.top = topValue+"px";
+            $('#pacman').css("left", leftValue + 'px')
+            $('#pacman').css("top", topValue +'px')
+            //document.getElementById('pacman').style.left = leftValue+"px";
+            //document.getElementById('pacman').style.top = topValue+"px";
         }
         function eat(){
             if(topValue % 30 == 0 && leftValue % 30 == 0){

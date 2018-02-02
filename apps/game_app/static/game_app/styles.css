@@ -20,7 +20,7 @@
 }
 .coin {
     background-color: rgb(7, 29, 126);
-    background-image: url('img/dot.gif');
+    background-image: url('dot.gif');
     height: 30px;
     width: 30px;
     display: inline-block;
@@ -33,7 +33,7 @@
 #pacman {
     margin: 5px;
     background-color: rgb(7, 29, 126);
-    background-image: url('img/pacman.gif');
+    background-image: url('pacman.gif');
     height: 20px;
     width: 20px;
     display: inline-block;
@@ -52,4 +52,8 @@
     position: absolute;
     left: 0px;
     top: 0px;
+}
+#logout{
+    display: inline-block;
+    margin-left:600px;
 }
