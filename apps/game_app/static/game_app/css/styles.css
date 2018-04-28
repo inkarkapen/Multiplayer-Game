@@ -1,6 +1,16 @@
-* {
+/* .player1{
+    background-
+} */* {
     margin: 0;
     padding: 0;
+}
+#world{
+    width: 570px;
+    background-color: rgb(7, 29, 126);
+}
+img{
+    width: 30px;
+    height: 30px;
 }
 .row {
     line-height: 0;
@@ -20,7 +30,7 @@
 }
 .coin {
     background-color: rgb(7, 29, 126);
-    background-image: url('dot.gif');
+    background-image: url('../img/dot.gif');
     height: 30px;
     width: 30px;
     display: inline-block;
@@ -30,29 +40,7 @@
     background-position: center;
     
 }
-#pacman {
-    margin: 5px;
-    background-color: rgb(7, 29, 126);
-    background-image: url('pacman.gif');
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    background-size: contain;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-}
-#ghost1, #ghost2, #ghost3, #ghost4 {
-    background-color: rgb(7, 29, 126);
-    background-image: url('');
-    height: 30px;
-    width: 30px;
-    display: inline-block;
-    background-size: contain;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-}
+
 #logout{
     display: inline-block;
     margin-left:600px;

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Game</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        {% load static %}
+        <link rel = "stylesheet" href = "{% static 'game_app/css/styles.css'%}">
+        <script src = "{% static 'game_app/js/world.js'%}"></script>
+    </head>
+    <body>
+		<div id = 'world'></div>
+		
+		
+		<a id = "logout" href = "/game/logout">Log Out</a>
+	</body>
+</html>
