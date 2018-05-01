@@ -16,6 +16,13 @@ def ws_connect(message):
 
 #broadcasts changes
 def ws_recieve(message):
+    print("in recieve")
+    Group('player').send({
+        "text": json.dumps({
+            "identifier": str(message.reply_channel),
+            "pos": json.loads(message['text'])
+        })
+    })
 
 #disconnects
 def ws_disconnect(message):
