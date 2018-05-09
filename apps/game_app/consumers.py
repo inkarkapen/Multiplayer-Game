@@ -10,11 +10,13 @@ def ws_connect(message):
     Group('player').add(message.reply_channel)
     message.reply_channel.send({
         "text": json.dumps({
+            "world": world_map,
             "identifier": str(message.reply_channel)
         })
     })
 
 #broadcasts changes
+#doesn't send world map, but send second player positions
 def ws_recieve(message):
     print("in recieve")
     Group('player').send({

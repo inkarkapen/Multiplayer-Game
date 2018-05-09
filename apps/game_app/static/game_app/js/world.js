@@ -33,4 +33,15 @@ class world{
         $('#world').html(output)
         //document.getElementById('world').innerHTML = output;
     }
+    posPlayer2(update){
+        console.log(this.world_map)
+        console.log("update is " + update.toString())
+        console.log(this.player2Pos)
+        if(this.player2Pos['row'] != undefined){
+            this.world_map[this.player2Pos['row']][this.player2Pos['col']] = 2
+        }
+        this.player2Pos = update;
+        this.world_map[this.player2Pos['row']][this.player2Pos['col']] = 9
+        this.drawWorld()
+    }
 }
